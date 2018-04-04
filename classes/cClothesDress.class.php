@@ -57,8 +57,8 @@ class cClothesDress{
   $this->fkBrand=(int)$dress->fkBrand;
   $this->name=stripslashes($dress->name);
   $this->description=stripslashes($dress->description);
-  $this->color_primary=api_clothes_color(stripslashes($dress->color_primary));
-  $this->color_secondary=api_clothes_color(stripslashes($dress->color_secondary));
+  $this->color_primary=stripslashes(strtolower($dress->color_primary));
+  $this->color_secondary=stripslashes(strtolower($dress->color_secondary));
   $this->addTimestamp=(int)$dress->addTimestamp;
   $this->addFkUser=(int)$dress->addFkUser;
   $this->updTimestamp=(int)$dress->updTimestamp;
@@ -68,6 +68,8 @@ class cClothesDress{
   if($sub_objects){
    $this->brand_obj=new cClothesBrand($this->fkBrand);
    $this->typology_obj=new cClothesTypology($this->fkTypology);
+   $this->color_primary_obj=new cClothesColor($this->color_primary);
+   $this->color_secondary_obj=new cClothesColor($this->color_secondary);
   }
   // get zones
   /*$this->zones_array=array();
